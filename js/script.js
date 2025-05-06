@@ -374,7 +374,7 @@ modalOverlay.addEventListener('click', () => {
     rotateCuboid();
 });
             
-// Cuboid Form submission handler
+// Form submission handler
 document.getElementById('idea-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -382,13 +382,6 @@ document.getElementById('idea-form').addEventListener('submit', function(e) {
     const submitBtn = form.querySelector('.submit-btn');
     const originalBtnText = submitBtn.textContent;
     
-    // Validate reCAPTCHA first
-    const recaptchaResponse = grecaptcha.getResponse();
-    if (!recaptchaResponse) {
-        alert('Please complete the reCAPTCHA verification');
-        return;
-    }
-    
     // Show loading state
     submitBtn.disabled = true;
     submitBtn.textContent = 'Sending...';
@@ -397,7 +390,7 @@ document.getElementById('idea-form').addEventListener('submit', function(e) {
     const formData = new URLSearchParams(new FormData(form));
     
     // Your Google Apps Script URL (from deployment)
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzEmk6ONOpkDEb-sIgWg6mF8jquNucuxtG17_y7TD5mIurby-jR9FJmnVjeNbagxKpS/exec';
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbwnvmxp3G5FzPYWRkqxAYlyH-FNloFF2gtjxglA9OewgriORtCupxHfhgA0YnRaAio-/exec';
     
     // Submit to Google Apps Script
     fetch(scriptUrl, {
@@ -408,7 +401,7 @@ document.getElementById('idea-form').addEventListener('submit', function(e) {
         }
     })
     .then(response => {
-        if (!response.ok) throw new Error('Network error');
+        if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
     })
     .then(data => {
@@ -416,92 +409,22 @@ document.getElementById('idea-form').addEventListener('submit', function(e) {
             // Success message
             alert(data.message);
             form.reset();
-            grecaptcha.reset();
             
-            // Close modal
-            modal.style.display = 'none';
-            modalOverlay.style.display = 'none';
+            // Close modal if needed
+            const modal = document.querySelector('.modal');
+            if (modal) modal.style.display = 'none';
+            
+            // Reset reCAPTCHA
+            if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
+            }
         } else {
-            throw new Error(data.message);
+            throw new Error(data.message || 'Submission failed');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert(error.message);
-        grecaptcha.reset();
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
-    });
-              
-    // Here you would typically send the form data to a server
-    alert('Thank you for your idea! We\'ll get back to you soon.');
-                
-    // Reset form and close modal
-    ideaForm.reset();
-    modal.style.display = 'none';
-    modalOverlay.style.display = 'none';
-    // Resume rotation after form submission
-    rotateCuboid();
-});
-
-
-// Footer Form submission handler
-document.getElementById('footer-idea-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const submitBtn = form.querySelector('.submit-btn');
-    const originalBtnText = submitBtn.textContent;
-    
-    // Validate reCAPTCHA first
-    const recaptchaResponse = grecaptcha.getResponse();
-    if (!recaptchaResponse) {
-        alert('Please complete the reCAPTCHA verification');
-        return;
-    }
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    
-    // Collect form data
-    const formData = new URLSearchParams(new FormData(form));
-    
-    // Your Google Apps Script URL (from deployment)
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzEmk6ONOpkDEb-sIgWg6mF8jquNucuxtG17_y7TD5mIurby-jR9FJmnVjeNbagxKpS/exec';
-    
-    // Submit to Google Apps Script
-    fetch(scriptUrl, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Network error');
-        return response.json();
-    })
-    .then(data => {
-        if (data.result === 'success') {
-            // Success message
-            alert(data.message);
-            form.reset();
-            grecaptcha.reset();
-            
-            // Close modal
-            modal.style.display = 'none';
-            modalOverlay.style.display = 'none';
-        } else {
-            throw new Error(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert(error.message);
-        grecaptcha.reset();
+        alert('Error: ' + error.message);
+        console.error('Submission error:', error);
     })
     .finally(() => {
         submitBtn.disabled = false;
