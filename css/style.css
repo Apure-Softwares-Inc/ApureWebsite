@@ -607,7 +607,7 @@ main hr {
     padding-bottom: 5px;
 }
 
-.tooltip:after {
+.cuboid-bg .tooltip:after {
     content: "";
     position: absolute;
     top: 100%;
@@ -618,19 +618,19 @@ main hr {
     border-color: var(--silver) transparent transparent transparent;
 }
 
-.cuboid-bg .modal {
+.modal {
     display: none;
     position: fixed;
     top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 50% !important;
+    transform: translate(-50%, -55%);
     background: linear-gradient(135deg, #070611 0%, var(--dark) 100%);
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 15px var(--navtext);
     z-index: 1002;
     width: 400px;
-    height: auto;
+    height: auto !important;
     text-align: center;
 }
 
@@ -1207,8 +1207,10 @@ select {
         left: 20%;
     }
 
-    .cuboid-bg .modal {
+    .modal {
         top: 50%;
+        width: 80% !important; /* Better fit for mobile */
+        max-height: 80vh; /* Prevent overflow */
     }
 }
 
@@ -1293,10 +1295,10 @@ select {
     .cuboid-face-top { transform: rotateX(90deg) translateZ(calc(20px + 1vw)); }
     .cuboid-face-bottom { transform: rotateX(-90deg) translateZ(calc(20px + 1vw)); }
     
-    .cuboid-bg .modal {
+    .modal {
         width: calc(100% - 40px);
         padding: 15px;
-        top: 55%;
+        top: 55% !important;
     }
 
     .cuboid-bg .tooltip {

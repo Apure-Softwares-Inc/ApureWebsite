@@ -529,53 +529,6 @@
                     <div class="cuboid-face cuboid-face-bottom" style="background-color: #df7b46;">Idea Box</div>
                 </div>
             </div>
-            
-            <div class="modal-overlay"></div>
-            
-            <div class="modal">
-                <h4><strong>Share Your Vision with Apure'</strong></h4>
-                <p>Have an innovative idea? Let's bring it to life together!</p>
-                <form id="idea-form">
-                    <div class="form-row"> 
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="idea">Describe Your Brilliant Idea</label>
-                        <textarea id="idea" name="idea" placeholder="What would you like to build (the crazier, the better)? Be as detailed as possible..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Project Type</label>
-                        <select id="category" name="category">
-                            <option value="web">Web Application</option>
-                            <option value="mobile">Mobile App</option>
-                            <option value="ai">AI Solutions</option>
-                            <option value="game">Game Development</option>
-                            <option value="saas">SaaS Platform</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" name="contact" name="contact" checked>
-                        <label for="contact" id="chec">I'd like to discuss this with your team</label>
-                    </div>
-                    <!-- Add reCAPTCHA -->
-                    <div class="form-group">
-                        <div class="g-recaptcha" 
-                            data-sitekey="6LeyOiYrAAAAALYwqAjVwr0nf8YytY5t_GCMAKA_">
-                            data-callback="onRecaptchaSuccess"  <!-- Optional callback -->
-                            data-size="normal">                <!-- Or 'compact' -->
-                        </div>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Your Idea →</button>
-                </form>
-            </div>
         </section>
 
         <hr></hr>
@@ -771,6 +724,53 @@
             </section>
         </footer>
     </main>
+            
+    <div class="modal-overlay"></div>
+    
+    <div class="modal">
+        <h4><strong>Share Your Vision with Apure'</strong></h4>
+        <p>Have an innovative idea? Let's bring it to life together!</p>
+        <form id="idea-form">
+            <div class="form-row"> 
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="idea">Describe Your Brilliant Idea</label>
+                <textarea id="idea" name="idea" placeholder="What would you like to build (the crazier, the better)? Be as detailed as possible..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Project Type</label>
+                <select id="category" name="category">
+                    <option value="web">Web Application</option>
+                    <option value="mobile">Mobile App</option>
+                    <option value="ai">AI Solutions</option>
+                    <option value="game">Game Development</option>
+                    <option value="saas">SaaS Platform</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" name="contact" name="contact" checked>
+                <label for="contact" id="chec">I'd like to discuss this with your team</label>
+            </div>
+            <!-- Add reCAPTCHA -->
+            <div class="form-group">
+                <div class="g-recaptcha" 
+                    data-sitekey="6LeyOiYrAAAAALYwqAjVwr0nf8YytY5t_GCMAKA_">
+                    data-callback="onRecaptchaSuccess"  <!-- Optional callback -->
+                    data-size="normal">                <!-- Or 'compact' -->
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Send Your Idea →</button>
+        </form>
+    </div>
 
     
 
