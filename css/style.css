@@ -1218,7 +1218,7 @@ select {
     }
     
     .welcome-text {
-        font-size: calc(1.5rem + 3vw);
+        font-size: calc(1.5rem + 2vw);
     }
     
     .navbar-brand {
