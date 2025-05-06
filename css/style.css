@@ -1074,8 +1074,8 @@ select {
     }
     
     .cube-container {
-        width: calc(200px + 10vw);
-        height: calc(200px + 10vw);
+        width: calc(200px + 10vw) !important;
+        height: calc(200px + 10vw) !important;
         transform: translateZ(calc(-100px - 5vw)) rotateY(0deg);
     }
     
