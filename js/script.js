@@ -390,7 +390,7 @@ document.getElementById('idea-form').addEventListener('submit', function(e) {
     const formData = new URLSearchParams(new FormData(form));
     
     // Your Google Apps Script URL (from deployment)
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbwnvmxp3G5FzPYWRkqxAYlyH-FNloFF2gtjxglA9OewgriORtCupxHfhgA0YnRaAio-/exec';
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzEmk6ONOpkDEb-sIgWg6mF8jquNucuxtG17_y7TD5mIurby-jR9FJmnVjeNbagxKpS/exec';
     
     // Submit to Google Apps Script
     fetch(scriptUrl, {
