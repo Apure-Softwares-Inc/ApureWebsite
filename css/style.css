@@ -1356,6 +1356,21 @@ select {
     }
 }
 
+@media (max-width: 320px) { /* Mobile */
+    
+    .welcome-text {
+        font-size: calc(1.5rem + 1vw);
+    }
+
+    .modal {
+        width: calc(100% - 40px) !important;
+    }
+
+    .cuboid-bg .tooltip {
+        top: -95px;
+    }
+}
+
 
 /* Responsive Mobile navigation */
 @media (max-width: 992px) {
