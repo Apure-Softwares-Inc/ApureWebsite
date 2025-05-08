@@ -320,8 +320,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+// Continuous Marquee Sliders
+const swiper6 = new Swiper('.swiper6', {
+    freeMode: true,
+    loop: true,
+    freeModeMomentum: false,
+    speed: 6000,
+    direction: 'horizontal',
+    autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+    },
+    slidesPerView: 'auto',
+    spaceBetween: 30,
+    allowTouchMove: false,
+    watchSlidesProgress: true,
+    resistanceRatio: 0 // Disable bounce effect
+});
 
-// 5. Cuboid Idea Box Animation
+
+
+
+// Cuboid Idea Box Animation
 const cuboidContainer = document.querySelector('.cuboid-container');
 const cuboid = document.querySelector('.cuboid');
 const tooltip = document.querySelector('.tooltip');
