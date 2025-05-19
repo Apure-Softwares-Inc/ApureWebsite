@@ -340,6 +340,154 @@ const swiper6 = new Swiper('.swiper6', {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    const mainCol = document.querySelector('#wat');
+    const vertSwiperEl = document.querySelector('#vertical-swiper');
+    const vertWrapper = vertSwiperEl.querySelector('.swiper-wrapper');
+    
+    // Function to fill vertical slider to match main content height
+    function fillVerticalSlider() {
+        var mainHeight = mainCol.offsetHeight;
+        // Duplicate original slides until vertical content height >= main content height
+        var originalSlides = Array.from(vertWrapper.children);
+        var cloneIndex = 0;
+        while (vertSwiperEl.scrollHeight < mainHeight && originalSlides.length > 0) {
+        var cloneSlide = originalSlides[cloneIndex % originalSlides.length].cloneNode(true);
+        vertWrapper.appendChild(cloneSlide);
+        cloneIndex++;
+        if (cloneIndex > 50) break; // safety break
+        }
+        // Set vertical slider height to match main content and hide overflow beyond it
+        vertSwiperEl.style.height = mainHeight + 'px';
+        vertSwiperEl.style.overflow = 'hidden';
+    }
+    
+    // Fill vertical slider then initialize Swipers
+    fillVerticalSlider();
+    const verticalSwiper = new Swiper('#vertical-swiper', {
+        direction: 'vertical',
+        spaceBetween: 0,
+        freeMode: true,
+        loop: true,
+        speed: 15000,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 'auto',
+        allowTouchMove: false
+    });
+
+    const swiper1 = new Swiper('.swiper1', {
+        freeMode: true,
+        loop: true,
+        freeModeMomentum: false,
+        speed: 6000,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 50,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        resistanceRatio: 0 // Disable bounce effect
+    });
+
+    const swiper2 = new Swiper('.swiper2', {
+        freeMode: true,
+        loop: true,
+        freeModeMomentum: false,
+        speed: 6000,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+            reverseDirection: true 
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 50,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        resistanceRatio: 0 // Disable bounce effect
+    });
+
+    const swiper3 = new Swiper('.swiper3', {
+        freeMode: true,
+        loop: true,
+        freeModeMomentum: false,
+        speed: 6000,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 50,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        resistanceRatio: 0 // Disable bounce effect
+    });
+
+    const swiper4 = new Swiper('.swiper4', {
+        freeMode: true,
+        loop: true,
+        freeModeMomentum: false,
+        speed: 6000,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+            reverseDirection: true 
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 50,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        resistanceRatio: 0 // Disable bounce effect
+    });
+
+    const swiper5 = new Swiper('.swiper5', {
+        freeMode: true,
+        loop: true,
+        freeModeMomentum: false,
+        speed: 6000,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 50,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        resistanceRatio: 0 // Disable bounce effect
+    });
+
+    const swiper6 = new Swiper('.swiper6', {
+        freeMode: true,
+        loop: true,
+        freeModeMomentum: false,
+        speed: 6000,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 50,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        resistanceRatio: 0 // Disable bounce effect
+    });
+  
+    // Recalculate vertical slider fill on window resize (for responsiveness)
+    window.addEventListener('resize', fillVerticalSlider);
+});
+
+
+
 
 // Cuboid Idea Box Animation
 const cuboidContainer = document.querySelector('.cuboid-container');

@@ -257,9 +257,16 @@ header {
 }
 
 .nav .nav-link:hover, .navbar-brand:hover {
-    color: #815eff;
+    color: #a70f13;
     cursor: pointer;
 } 
+
+.nav .nav-link.active, .navbar-brand.active {
+    color: #a70f13 !important;
+    cursor: pointer;
+    font-weight: 700 !important;
+    border-bottom-color: currentColor;
+}
 
 /* Responsive Navigation Bar */
 @media screen and (max-width: 1199.98px) and (orientation: portrait) {
@@ -380,7 +387,7 @@ main hr {
 }
 
 #intro button:hover, #us button:hover, #do button:hover, #cho button:hover {
-    background: linear-gradient(135deg, #c8e7ef 0%, #1a1757 100%);
+    background: linear-gradient(135deg, #df7b46 0%, #1a1757 100%);
 }
 
 #intro p, #us button, #do button, #cho button {
@@ -410,9 +417,16 @@ main hr {
 
 #us2 {
     width: 100%; 
-    height: 100vh; 
+    height: auto; 
     background-color: transparent;
     border-color: #815eff;
+}
+
+#us2a {
+    font-size: 1.0rem !important; 
+    text-align: start; 
+    padding-left: 15px; 
+    padding-right: 15px;
 }
 
 #us-image1 {
@@ -421,12 +435,12 @@ main hr {
     object-fit: contain;
 }
 
-#us .card-body {
+#us .card-body, #swip .card-body {
     padding: 10px; 
     color: var(--text);
 }
 
-#us .card-title {
+#us .card-title, #swip .card-title {
     color: var(--text);
     text-shadow: 1px 1px 1px var(--text);
 }
@@ -1129,21 +1143,31 @@ select {
     #us2 {
         height: auto;
     }
+
+    #us2a {
+        font-size: 1.0rem !important; 
+        padding-left: 5px; 
+        padding-right: 5px;
+    }
     
-    #do .row {
+    #do .row, #do1 .row {
         flex-wrap: wrap;
     }
     
-    #do .col-3 {
+    #do .col-3, #do1 .col-3 {
         width: 50%;
         margin-bottom: 1rem;
     }
     
-    #do .card {
+    #do .card, #do1 .card {
         height: auto;
     }
 
-    #do #tut {
+    #do #tut, #us2 #tut {
+        display: none;
+    }
+
+    .tat {
         display: none;
     }
 
@@ -1244,7 +1268,7 @@ select {
         padding-right: 0; 
     }
 
-    #do .col-3 {
+    #do .col-3, #do1 .col-3 {
         width: 100%;
     }
 
@@ -1360,7 +1384,11 @@ select {
     }
 
     #home-slid {
-        margin-top: 30px !important;
+        margin-top: 50px !important;
+    }
+
+    #wat #home-slid {
+        margin-top: 100px !important;
     }
 }
 
@@ -1453,8 +1481,8 @@ select {
     height: 70px;
     min-height: 70px;
     display: flex;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     margin-left: 0;
     margin-right: 0;
     max-width: 100%;
@@ -1487,4 +1515,228 @@ select {
     height: 100%;
     object-fit: contain;
     border-radius: 0;
+}
+
+
+
+/* What We Do Page */
+#wat {
+    top: 80px;
+    left: 0;
+    overflow-x: hidden;
+    position: relative;
+    padding-left: 100px;
+}
+
+#wat h1 {
+    text-shadow: 3px 3px 3px var(--navtext);
+    text-align: center;
+    color: #815eff;
+}
+
+#vert {
+    display: flex;
+}
+
+#watfooter { 
+    position: relative;
+}
+
+/* Vertical slider */
+#vertical-swiper {
+    position: fixed;
+    left: 0;
+    top: 82px;
+    width: 100px;
+    background: var(--silver);
+    z-index: 1000;
+    max-width: 10%;
+    flex: 0 0 auto;  /* keep their intrinsic width */
+    display: flex;
+}
+
+.vertical-slide {
+    width: 100px !important;
+    height: 300px !important;
+}
+
+.vertical-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Horizontal sliders */
+.horizontal-section {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: var(--navtext) 0px 0px 8px 2px;
+    background-color: var(--dark);
+    margin-bottom: 50px;
+}
+
+/* Linear animation for smooth continuous scroll */
+.swiper-wrapper {
+    transition-timing-function: linear !important;
+}
+
+.horizontal-section .swiper {
+    width: 100%;
+    height: 305px;
+    overflow: hidden; /* Crucial for slider containment */
+    flex: 0 0 auto;  /* take full width available (each on new row)  */
+}
+
+.horizontal-section .swiper-slide {
+    width: 135px;
+    height: 300px;
+}
+
+.horizontal-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--silver);
+    box-shadow: 3px 3px 3px #b0b0ae;
+}
+
+#sel {
+    font-size: 1.2rem !important; 
+    line-height: 1.4em;
+}
+
+#swip {
+    padding-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 200px;
+}
+
+#watp {
+    font-size: 1.6rem;
+}
+
+#wat #do1 .card {
+    
+    background: linear-gradient(98.26482936115595deg, #9747ff0f, #1b98d20f);
+}
+
+#Wat-image {
+    width: 270px;
+    height: 154px;
+}
+
+#swip img {
+    width: 100%;
+    height: 100%;
+}
+
+#ind p {
+    padding-right: 35px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+
+    .horizontal-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    #swip {
+        padding-left: calc(20px + 5vw);
+        padding-right: calc(20px + 5vw);
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    #vertical-swiper {
+        top: 115px;
+    }
+    .horizontal-section h1 {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .horizontal-section {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    #watp {
+        font-size: calc(1rem + 0.5vw);
+    }
+    
+    #wat {
+        padding-left: 70px;
+        top: 90px;
+    }
+
+    #swip #ind {
+        margin-bottom: 3rem;
+    }
+
+    #ind p {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #swip h2 {
+        font-size: calc(2.0rem + 2vw);
+    }
+
+    #vertical-swiper {
+        width: 0;
+    }
+
+    .horizontal-section h1 {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        margin: 0;
+    }
+
+    .horizontal-section .swiper-slide {
+        width: 120px;
+        height: 260px;
+    }
+
+    .horizontal-section {
+        padding-top: 30px;
+        padding-bottom: 10px;
+        margin: 0;
+    }
+
+    .horizontal-section .swiper {
+        height: 265px;
+    }
+
+    #wat {
+        padding-left: 0;
+        top: 90px;
+    }
+
+    #wat #h3i {
+        font-size: calc(1.0rem + 1vw);
+    }
+
+    #tut {
+        display: none;
+    }
+    
+    #swip {
+        padding-bottom: 100px;
+    }
+
+    #sel {
+        font-size: 1.0rem !important; 
+    }
+
+    #ind p {
+        padding-right: 0;
+    }
 }
