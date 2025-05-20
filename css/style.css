@@ -1690,6 +1690,25 @@ select {
         font-size: calc(2.0rem + 2vw);
     }
 
+    #swip .ind2 {
+        padding: 0;
+        margin: 0;
+    }
+
+    #swip #ind3 {
+        padding: 0;
+        margin: 0;
+    }
+
+    #swip #ind {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #Wat-image {
+        width: 282px;
+    }
+
     #vertical-swiper {
         width: 0;
     }
