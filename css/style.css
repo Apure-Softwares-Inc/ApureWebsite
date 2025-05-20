@@ -1706,7 +1706,7 @@ select {
     }
 
     #Wat-image {
-        width: 282px;
+        width: 328.81px;
     }
 
     #vertical-swiper {
@@ -1757,5 +1757,6 @@ select {
 
     #ind p {
         padding-right: 0;
+        text-align: center;
     }
 }
