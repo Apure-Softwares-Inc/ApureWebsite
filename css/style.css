@@ -354,7 +354,7 @@ main hr {
     margin-bottom: 5rem;
 }
 
-#intro, #us, #do, #cho, #obs {
+#intro, #us, #do, #cho, #obs, #challenges1 {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 100px;
@@ -1758,5 +1758,567 @@ select {
     #ind p {
         padding-right: 0;
         text-align: center;
+    }
+}
+
+
+
+/* What We Do Page */
+#abt, #get {
+    top: 80px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* hero section */
+#welcome-section {
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    padding: 20px; /* Add some padding for spacing */
+    width: 100%;
+    align-items: start;
+    justify-content: left;
+    background: linear-gradient(98.26482936115595deg, #9747ff0f, #1b98d20f);
+    box-shadow: #1b98d2 0px 0px 8px 2px;
+}
+
+#welcome-section #intro {
+    width: 100%;
+    padding-top: 3rem;
+    padding-left: 2rem;
+    padding-bottom: 4rem;
+    padding-right: 0;
+    height: 80vh;
+    margin-top: 2rem;
+}
+
+#welcome-section #intro h3 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.animated-text{
+    font-size: 3.5rem;
+    white-space: nowrap; /* Prevents text from breaking */
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Cursor Effect */
+.cursor {
+    font-size: 5.0rem;
+    color: var(--navtext);
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+#intro-name {
+    text-align: left;
+    padding: 3rem;
+    color: var(--navtext);
+}
+
+#intro-name strong {
+    color: #a70f13;
+}
+
+#intro-serv {
+    text-align: left;
+    padding-left: 3rem !important;
+    padding-top: 4rem;
+    color: var(--navtext);
+}
+
+
+/* Responsive Hero Section */
+@media screen and (max-width: 1199.98px) and (orientation: portrait) {
+    #welcome-section #intro {
+        padding-left: 2rem;
+        padding-top: 2rem;
+    }
+
+    .animated-text {
+        font-size: 3.0rem;
+    }
+
+    .cursor {
+        font-size: 4.0rem;
+    }
+
+    #intro-name {
+        padding: 1rem;
+    }
+
+    #intro-serv {
+        padding-left: 1rem;
+        padding-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #welcome-section {
+        text-align: center;
+    }
+
+    #welcome-section #intro {
+        padding-left: 0;
+        padding-top: 8rem;
+        height: auto;
+    }
+
+    .animated-text {
+        font-size: 1.7rem;
+    }
+
+    .cursor {
+        font-size: 2.5rem;
+    }
+
+    #intro-name {
+        font-size: 6.5rem;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    #welcome-section #intro h3 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 7rem;
+        padding-bottom: 5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #welcome-section {
+        padding: 0; 
+        min-height: auto;
+    }
+
+    .animated-text {
+        font-size: 1.0rem;
+    }
+
+    .cursor {
+        font-size: 1.5rem;
+    }
+
+    #intro-name {
+        font-size: 5.0rem;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    #welcome-section #intro {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+        padding-top: 6rem;
+    }
+
+    #welcome-section #intro h3 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    #welcome-section #intro #h3i {
+        font-size: calc(1.0rem + 1vw);
+    }
+}
+
+
+/* The Team Section */
+#challenges1 {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 100px;
+    padding-top: 150px;
+}
+
+#challenge1 {
+    height: auto;
+    width: 100%;
+    padding-top: 100px;
+}
+
+#tabs .tab-btn {
+    color: var(--text);
+    transition: background-color 0.3s ease; /* Smooth transition */
+    width: 100%; 
+    height: 100px; 
+    margin-right: 10px;
+    border: 1px solid #1b98d20f;
+    box-shadow: 3px 3px 3px #1b98d2;
+}
+
+#tabs .tab-btn:hover {
+    background: linear-gradient(98.26482936115595deg, #9747ff0f, #1b98d20f);
+}
+
+#tabs .tab-btn.active {
+    background: linear-gradient(98.26482936115595deg, #9747ff0f, #1b98d20f);
+    color: var(--navtext);
+}
+
+.tabcontent {
+    display: none;
+}
+
+#tabs {
+    background: #1b98d20f;
+    border-radius: 10px;
+    padding-top: 20px;
+}
+
+
+/* Responsive Customer Service App Project Section */
+@media screen and (max-width: 1199.98px) and (orientation: portrait) {
+    #challenges1 {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    #challenge1 {
+        padding-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+    }
+
+    #tabs .tab-btn {
+        width: 89px; 
+        height: 70px; 
+        margin-right: 4px;
+        margin-bottom: 8px;
+        text-align: center;
+        font-size: 0.65rem;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #challenges1 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    #tabs .tab-btn {
+        width: 326px; 
+        height: 60px; 
+        margin-right: 2px;
+        margin-bottom: 5px;
+        font-size: 0.3rem;
+        padding: 0;
+    }
+    
+    #tabs .tab-btn h3 {
+        font-size: calc(1.0rem + 1.5vw);
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #tabs .tab-btn {
+        width: 173px; 
+        height: 40px; 
+        margin-right: 2px;
+        margin-bottom: 5px;
+        font-size: 0.3rem;
+        padding: 0;
+    }
+    
+    #tabs .tab-btn h3 {
+        font-size: calc(1.0rem + 0.5vw);
+        margin-bottom: 0;
+    }
+
+    #challenges1 {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+        padding-top: 7rem;
+    }
+
+    #challenge1 {
+        padding: 7px;
+    }
+}
+
+    
+
+
+/* About Section */
+#abtcard {
+    max-width: 100%; 
+    height: auto;
+    background-color: transparent;
+}
+
+#Abta {
+    padding: 120px;
+}
+
+#Abt-image {
+    object-fit: cover; 
+    padding: 0; 
+    height: 241px; 
+    width: 200px; 
+    border-bottom-right-radius: 100px;
+    border-top-left-radius: 100px;
+}
+
+#Abt {
+    font-weight: normal; 
+    font-size: 1.5rem; 
+    line-height: 1.4em;
+}
+
+#Abt-image1 {
+    object-fit: cover; 
+    padding: 0; 
+    height: 149px; 
+    width: 195px; 
+    border-radius: 20px;
+}
+
+#Abtq {
+    margin-bottom: 60px;
+}
+
+
+/* Responsive About Section */
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+    .card {
+        padding: 0;
+        margin-bottom: 3rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #rows {
+        align-items: center;
+        flex-direction: column-reverse; /* Flip text and image */
+        text-align: center;
+    }
+    
+    #Abta {
+        justify-content: center;
+        flex-direction: column;
+        padding-right: 50px;
+        padding-left: 20px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-top: 80px;
+        align-items: center;
+    }
+
+    #Abt-image {
+        height: auto; 
+        width: 90%; /* Adjust width for better fit */
+        max-width: 400px;
+        margin-top: 20px;
+    }
+    
+    #Abt {
+        text-align: center;
+    }
+
+    #Abt-image1 {  
+        height: 139.2px; 
+        width: 174px;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    #Abtq {
+        margin-bottom: 30px;
+    }
+
+    #Abtc {
+        justify-content: center;
+    }
+
+    #Abtr {
+        flex-wrap: nowrap;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #Abta {
+        padding-right: 20px;
+    }
+
+    #Abt-image {   
+        width: 50%;
+    }
+
+    #Abts {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    #Abtr {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    #Abtc {
+        flex: 0 0 50%; /* Force 2 columns */
+        max-width: 80%;
+        padding: 5px; /* Add spacing */
+        box-sizing: border-box;
+    }
+
+    #Abt-image1 {  
+        height: 150px; /* Maintain aspect ratio */
+        width: 100%;
+        border-radius: 5px;
+        object-fit: cover; /* Prevent image distortion */
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    #Abta {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 50px;
+        margin-top: 50px;
+    }
+
+    #Abt {
+        font-size: 1.0rem;
+    }
+
+    #Abt-image {   
+        width: 70%;
+    }
+
+    #Abtr {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    #Abtc {
+        flex: 0 0 50%; /* Force 2 columns */
+        max-width: 50%;
+        padding: 5px; /* Add spacing */
+        box-sizing: border-box;
+    }
+
+    #Abt-image1 {  
+        height: 140px; /* Maintain aspect ratio */
+        width: 100%;
+        border-radius: 5px;
+        object-fit: cover; /* Prevent image distortion */
+    }
+}
+
+
+
+/* Get in Touch Page */
+
+/* hero section */
+#get {
+    background: linear-gradient(135deg, #170636, var(--dark));
+    top: 70px;
+}
+
+#hero-section {
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    padding: 20px; /* Add some padding for spacing */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#getrow {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#get-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Responsive Hero Section */
+@media screen and (max-width: 768px) {
+    #hero-section {
+       padding-top: 150px;
+    }
+
+    #getrow {
+        flex-direction: column;
+    }
+
+    #get .col-6 {
+        width: 100%;
+        padding-bottom: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #get #forms {
+        width: 70%;
+        margin-left: 95px;
+    }
+    
+    #getfooter {
+        padding-top: 50px;
+        padding-left: calc(20px + 5vw);
+        padding-right: calc(20px + 5vw);
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    #get {
+        top: 80px;
+    }
+
+    #hero-section {
+       padding-top: 100px;
+       padding-right: 10px;
+       padding-left: 10px;
+       padding-bottom: 10px;
+    }
+
+    #getrow {
+        flex-direction: column;
+    }
+
+    #get .col-6 {
+        width: 100%;
+        padding-bottom: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #get #forms {
+        width: 90%;
+        margin-left: 15px;
+    }
+    
+    #getfooter {
+        padding-top: 50px;
+        padding-left: calc(20px + 5vw);
+        padding-right: calc(20px + 5vw);
     }
 }
