@@ -1247,6 +1247,10 @@ select {
         font-size: calc(1.5rem + 2vw);
     }
     
+    .welcome {
+        margin-bottom: 20rem;;
+    }
+    
     .navbar-brand {
         padding-left: 10px;
     }
@@ -2320,5 +2324,213 @@ select {
         padding-top: 50px;
         padding-left: calc(20px + 5vw);
         padding-right: calc(20px + 5vw);
+    }
+}
+
+
+
+
+
+
+
+/* ===== NEW YEAR CELEBRATION STYLES ===== */
+.new-year-celebration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Hidden by default, shown via JS */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2001; /* Above the welcome text */
+    background: radial-gradient(circle, rgba(125, 58, 235, 0.15) 0%, rgba(4, 1, 29, 0.9) 70%);
+}
+
+.celebration-content {
+    text-align: center;
+    z-index: 2002;
+    padding: 20px;
+}
+
+.new-year-message {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #ffd166; /* A celebratory gold color */
+    margin-bottom: 2rem;
+    font-family: monospace;
+    text-shadow: 0 0 15px rgba(255, 209, 102, 0.7);
+}
+
+.new-year-message .char {
+    display: inline-block;
+    position: relative;
+    transform: translateY(100px) rotate(360deg);
+    opacity: 0;
+    animation: flyIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: calc(0.05s * var(--i));
+}
+
+.binary-countdown {
+    font-size: 3rem;
+    color: #7dff7d; /* Matrix green */
+    font-family: monospace;
+    letter-spacing: 5px;
+    margin-bottom: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid #7dff7d;
+}
+
+.binary-countdown span {
+    display: inline-block;
+    min-width: 20px;
+    text-align: center;
+}
+
+.binary-countdown span:not(.binary-comment) {
+    animation: binaryBlink 1.5s infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.binary-comment {
+    color: #ffd166;
+    animation: none !important;
+    margin-left: 10px;
+}
+
+.geek-wish {
+    font-size: 1.5rem;
+    color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeIn 2s ease 3s forwards;
+}
+
+/* Code Confetti Animation */
+.code-confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    z-index: 2000;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+.code-particle {
+    position: absolute;
+    font-family: monospace;
+    font-weight: normal;
+    font-size: 0.2rem;
+    color: #815eff;
+    opacity: 0;
+    animation: fall linear forwards;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 0 8px currentColor; /* Add glow effect */
+    z-index: 2001;
+}
+
+/* Rainbow colors for particles */
+.code-particle:nth-child(3n) { color: #ff6b6b; } /* Red */
+.code-particle:nth-child(3n+1) { color: #4ecdc4; } /* Teal */
+.code-particle:nth-child(3n+2) { color: #ffd166; } /* Yellow */
+
+@keyframes flyIn {
+    to {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes binaryBlink {
+    0%, 100% { 
+        opacity: 1; 
+        text-shadow: 0 0 10px #7dff7d;
+    }
+    50% { 
+        opacity: 0.3; 
+        text-shadow: none;
+    }
+}
+
+@keyframes fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px) translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(100vh) translateX(var(--random-x)) rotate(360deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(120vh) translateX(var(--random-x)) rotate(720deg);
+    }
+}
+
+/* Add some floating animation for variety */
+@keyframes float {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(20px) rotate(180deg); }
+}
+
+/* Make some particles float instead of just falling */
+.code-particle.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments for the celebration */
+@media (max-width: 768px) {
+    .new-year-message {
+        font-size: 3.5rem;
+    }
+    .binary-countdown {
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+        padding: 10px 15px;
+    }
+    .geek-wish {
+        font-size: 1.2rem;
+        padding: 0 20px;
+    }
+    .code-particle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-year-message {
+        font-size: 2.9rem;
+    }
+    .binary-countdown {
+        font-size: 1.3rem;
+        letter-spacing: 1.2px;
+        padding: 10px 15px;
+
+    }
+    .geek-wish {
+        font-size: 1.2rem;
+        padding: 0 20px;
+    }
+    .code-particle {
+        font-size: 1rem;
     }
 }

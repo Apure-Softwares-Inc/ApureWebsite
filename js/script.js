@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const content = document.querySelector('.content');
     
     
+    
     // Animation state
     let animationPhase = 0;
     let targetXRotation = 0;
@@ -23,8 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const rotationSpeed = 0.5; // Increased rotation speed
     const maxVerticalRotation = 180;
 
+
+
     // 1. Welcome text animation
     function startWelcomeAnimation() {
+        checkAndCreateNewYearCelebration();
         welcomeText.style.opacity = '1';
         
         setTimeout(() => {
@@ -33,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 welcomeScreen.style.display = 'none';
                 startRosePetalAnimation();
             }, 10);
-        }, 4300);
+        }, 6000);
     }
 
     // 2. Rose petal animation
@@ -208,6 +212,121 @@ document.addEventListener('DOMContentLoaded', function() {
             scale(0.8)
         `;
     }
+
+    // === IMPROVED FUNCTION: Fixed confetti and better animations ===
+    function checkAndCreateNewYearCelebration() {
+        const today = new Date();
+        
+        // Check if it's January 2026 (month 0 = January, year 2026)
+        if (today.getFullYear() === 2026 && today.getMonth() === 0) {
+            console.log("🎉 Happy New Year 2026 from Apure'! Showing celebration...");
+            
+            const celebrationEl = document.querySelector('.new-year-celebration');
+            if (!celebrationEl) {
+                console.error("❌ Celebration element not found!");
+                return;
+            }
+            
+            // Show celebration immediately
+            celebrationEl.style.display = 'flex';
+            console.log("✅ Celebration overlay displayed");
+
+            // 1. Create "code confetti" particles with better positioning
+            const confettiContainer = document.querySelector('.code-confetti');
+            if (!confettiContainer) {
+                console.error("❌ Confetti container not found!");
+            } else {
+                console.log("✅ Creating code confetti particles...");
+                
+                // Clear any existing particles (in case of multiple calls)
+                confettiContainer.innerHTML = '';
+                
+                const symbols = ['{', '}', '</>', ';', '=', '()', '[]', '#', '/', '*', '||', '&', '<div>', '=>', '++', '--', '===', 'const', 'let', 'var', 'function', 'return', 'console', 'if', 'else', 'for', 'while', 'true', 'false', 'null', 'undefined'];
+                
+                // Create more particles for better visibility
+                for (let i = 0; i < 80; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'code-particle';
+                    particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    
+                    // Random horizontal position
+                    const randomX = Math.random() * 100;
+                    particle.style.left = randomX + 'vw';
+                    
+                    // Random animation properties
+                    const delay = Math.random() * 3;
+                    const duration = 3 + Math.random() * 4; // 3-7 seconds
+                    const randomXMovement = (Math.random() * 200 - 100) + 'px';
+                    
+                    particle.style.animationDelay = delay + 's';
+                    particle.style.animationDuration = duration + 's';
+                    particle.style.setProperty('--random-x', randomXMovement);
+                    
+                    // Random size variation
+                    const size = 1 + Math.random() * 0.5;
+                    particle.style.fontSize = (1.8 * size) + 'rem';
+                    
+                    confettiContainer.appendChild(particle);
+                }
+                console.log(`✅ Created ${confettiContainer.children.length} confetti particles`);
+            }
+
+            // 2. Animate the binary countdown with better timing
+            const binaryDigits = document.querySelectorAll('.binary-countdown span:not(.binary-comment)');
+            const targetBits = ['0', '1', '0', '0', '1', '0', '1', '1'];
+            
+            if (binaryDigits.length > 0) {
+                console.log("✅ Animating binary countdown...");
+                
+                binaryDigits.forEach((digit, index) => {
+                    // Set initial random values
+                    digit.textContent = Math.round(Math.random());
+                    digit.style.setProperty('--i', index + 1);
+                    
+                    // Animate flipping to final value
+                    setTimeout(() => {
+                        let flips = 0;
+                        const flipInterval = setInterval(() => {
+                            digit.textContent = digit.textContent === '0' ? '1' : '0';
+                            digit.style.color = flips % 2 === 0 ? '#7dff7d' : '#ff6b6b';
+                            flips++;
+                            
+                            if (flips > 5) {
+                                clearInterval(flipInterval);
+                                digit.textContent = targetBits[index];
+                                digit.style.color = '#7dff7d';
+                            }
+                        }, 120);
+                    }, index * 150 + 1000);
+                });
+            }
+
+            // 3. Ensure original welcome text fades in properly
+            const welcomeText = document.querySelector('.welcome-text');
+            if (welcomeText) {
+                welcomeText.style.opacity = '0';
+                welcomeText.style.transition = 'opacity 1s ease';
+                
+                setTimeout(() => {
+                    welcomeText.style.opacity = '1';
+                    console.log("✅ Original welcome text faded in");
+                }, 3000);
+            }
+            
+            // 4. Add a debug mode button for testing (only shows if you hold Shift)
+            document.addEventListener('keydown', (e) => {
+                if (e.shiftKey && e.key === 'D') {
+                    alert(`🎉 New Year Celebration Debug Info:\n• Date: ${today.toDateString()}\n• Confetti Particles: ${document.querySelectorAll('.code-particle').length}\n• Celebration Active: ${celebrationEl.style.display !== 'none'}`);
+                }
+            });
+            
+            // 5. Log success
+            console.log("🎊 New Year celebration fully initialized!");
+        } else {
+            console.log("📅 Not January 2026, skipping celebration");
+        }
+    }
+
 
     // Start the animation sequence
     setTimeout(startWelcomeAnimation, 500);
