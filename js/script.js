@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         
         // Check if it's January 2026 (month 0 = January, year 2026)
-        if (true) {
+        if (today.getFullYear() === 2026 && today.getMonth() === 0) {
             console.log("🎉 Happy New Year 2026 from Apure'! Showing celebration...");
             
             const celebrationEl = document.querySelector('.new-year-celebration');
