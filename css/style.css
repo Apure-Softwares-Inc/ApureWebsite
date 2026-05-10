@@ -354,13 +354,12 @@ main hr {
     margin-bottom: 5rem;
 }
 
-#intro, #us, #do, #cho, #obs, #challenges1 {
+#intro, #us, #do, #cho, #obs, #challenges1, #fifa2026 {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 100px;
     padding-bottom: 50px;
 }
-
 
 #intro h3 {
     padding-bottom: 30px;
@@ -2320,5 +2319,57 @@ select {
         padding-top: 50px;
         padding-left: calc(20px + 5vw);
         padding-right: calc(20px + 5vw);
+    }
+}
+
+
+
+/* FIFA 2026 Content section - Remove later */
+
+#fifa2026 {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: var(--dark);
+}
+
+#fifa2026 p {
+    color: var(--silver);
+}
+
+#speeder {
+    width: 50%;  
+    object-fit: contain;
+    margin-top: 100px;
+}
+
+#ballie {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;
+    border-radius: 5%;
+}
+
+@media (max-width: 480px) { /* Mobile */
+    :root {
+        font-size: calc(12px + 0.5vw);
+    }
+    
+    #fifa2026 .row {
+        flex-direction: column;
+    }
+
+    #fifa2026 .col-6 {
+        width: 100%;
+        height: 100%;
+    }
+
+    #speeder {
+    margin-top: 50px;
+    }
+
+    #fifa2026 p {
+        margin-bottom: 50px;
     }
 }
