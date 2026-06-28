@@ -1,819 +1,230 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Elements
-    const welcomeScreen = document.querySelector('.welcome-screen');
-    const welcomeText = document.querySelector('.welcome-text');
-    const panels = document.querySelectorAll('.panel');
-    const blackScreen = document.querySelector('.black-screen');
-    const luxuryBg = document.querySelector('.luxury-bg');
-    const cubeContainer = document.querySelector('.cube-container');
-    const cube = document.querySelector('.cube');
-    const cuboidContainer = document.querySelector('.cuboid-container');
-    const cuboid = document.querySelector('.cuboid');
-    const nav = document.querySelector('.navbar');
-    const content = document.querySelector('.content');
-    
-    
-    // Animation state
-    let animationPhase = 0;
-    let targetXRotation = 0;
-    let currentXRotation = 0;
-    let isAnimating = false;
-    let verticalRotationComplete = false;
-    let allowContentScroll = false;
-    const rotationSpeed = 0.5; // Increased rotation speed
-    const maxVerticalRotation = 180;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // 1. Welcome text animation
-    function startWelcomeAnimation() {
-        welcomeText.style.opacity = '1';
-        
-        setTimeout(() => {
-            welcomeScreen.style.opacity = '0';
-            setTimeout(() => {
-                welcomeScreen.style.display = 'none';
-                startRosePetalAnimation();
-            }, 10);
-        }, 4300);
+function initNavigation() {
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const menu = document.querySelector("[data-nav-menu]");
+  if (!toggle || !menu) return;
+
+  const closeMenu = () => {
+    toggle.setAttribute("aria-expanded", "false");
+    menu.classList.remove("is-open");
+    document.body.classList.remove("nav-open");
+  };
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    menu.classList.toggle("is-open", !isOpen);
+    document.body.classList.toggle("nav-open", !isOpen);
+  });
+
+  menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeMenu();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+}
+
+function initCursorOrb() {
+  const orb = document.querySelector("[data-cursor-orb]");
+  if (!orb || window.matchMedia("(hover: none), (pointer: coarse)").matches || reducedMotion) return;
+
+  let pointerX = -100;
+  let pointerY = -100;
+  let orbX = -100;
+  let orbY = -100;
+
+  const render = () => {
+    orbX += (pointerX - orbX) * 0.16;
+    orbY += (pointerY - orbY) * 0.16;
+    orb.style.transform = `translate3d(${orbX - orb.offsetWidth / 2}px, ${orbY - orb.offsetHeight / 2}px, 0)`;
+    window.requestAnimationFrame(render);
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    orb.classList.add("is-visible");
+  });
+
+  document.addEventListener("pointerover", (event) => {
+    if (event.target.closest("a, button, input, select, textarea, summary")) {
+      orb.classList.add("is-active");
     }
+  });
 
-    // 2. Rose petal animation
-    function startRosePetalAnimation() {
-        blackScreen.style.opacity = '1';
-        cubeContainer.style.opacity = '0.3';
-        
-        setTimeout(() => {
-            document.querySelector('.top-left').style.transform = 'translate(-100%, -100%) rotate(-15deg)';
-            document.querySelector('.top-right').style.transform = 'translate(100%, -100%) rotate(15deg)';
-            document.querySelector('.bottom-left').style.transform = 'translate(-100%, 100%) rotate(15deg)';
-            document.querySelector('.bottom-right').style.transform = 'translate(100%, 100%) rotate(-15deg)';
-
-            luxuryBg.style.opacity = '1';
-            cubeContainer.style.opacity = '1';
-
-            setTimeout(() => {
-                blackScreen.style.display = 'none';
-                initialCubeRotation();
-            }, 2500);
-        }, 1200);
+  document.addEventListener("pointerout", (event) => {
+    if (event.target.closest("a, button, input, select, textarea, summary")) {
+      orb.classList.remove("is-active");
     }
+  });
 
-    // 3. Initial cube rotation
-    function initialCubeRotation() {
-        let start = null;
-        const duration = 2400;
-        
-        function rotateClockwise(timestamp) {
-            if (!start) start = timestamp;
-            const progress = (timestamp - start) / duration;
-            
-            const rotation = 360 * progress;
-            cube.style.transform = `rotateY(${rotation}deg)`;
-            
-            if (progress < 1) {
-                requestAnimationFrame(rotateClockwise);
-            } else {
-                start = null;
-                requestAnimationFrame(rotateCounterClockwise);
-            }
-        }
-        
-        function rotateCounterClockwise(timestamp) {
-            if (!start) start = timestamp;
-            const progress = (timestamp - start) / duration;
-            
-            const rotation = 360 - (360 * progress);
-            cube.style.transform = `rotateY(${rotation}deg)`;
-            
-            if (progress < 1) {
-                requestAnimationFrame(rotateCounterClockwise);
-            } else {
-                cube.style.transform = 'rotateY(0deg) rotateX(0deg)';
-                animationPhase = 1;
-                window.addEventListener('wheel', handleScroll);
-                window.addEventListener('mousemove', handleMouseMove);
-            }
-        }
-        
-        requestAnimationFrame(rotateClockwise);
-    }
+  render();
+}
 
-    // 4. Handle scroll for vertical rotation
-    function handleScroll(e) {
-        if (isAnimating || animationPhase !== 1) return;
-        
-        e.preventDefault();
-        
-        // Faster vertical rotation
-        targetXRotation += e.deltaY * rotationSpeed;
-        targetXRotation = Math.max(-maxVerticalRotation, Math.min(maxVerticalRotation, targetXRotation));
-        
-        animateCubeRotation();
-        
-        // Check if vertical rotation is complete
-        if (Math.abs(targetXRotation) >= maxVerticalRotation) {
-            verticalRotationComplete = true;
-            completeAnimation();
-        }
-    }
+function initReveals() {
+  const items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
 
-    // 5. Animate cube rotation smoothly
-    function animateCubeRotation() {
-        if (isAnimating) return;
-        isAnimating = true;
-        
-        const animateFrame = () => {
-            currentXRotation += (targetXRotation - currentXRotation) * 0.2; // Faster interpolation
-            
-            cube.style.transform = `rotateY(0deg) rotateX(${currentXRotation}deg)`;
-            
-            if (Math.abs(currentXRotation - targetXRotation) > 0.5) {
-                requestAnimationFrame(animateFrame);
-            } else {
-                isAnimating = false;
-            }
-        };
-        
-        requestAnimationFrame(animateFrame);
-    }
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    items.forEach((item) => item.classList.add("is-visible"));
+    return;
+  }
 
-    // 6. Handle mouse move for cube follow effect
-    function handleMouseMove(e) {
-        if (animationPhase !== 1) return;
-        
-        const x = e.clientX / window.innerWidth - 0.5;
-        const y = e.clientY / window.innerHeight - 0.5;
-        
-        cubeContainer.style.transform = `
-            translateZ(-200px) 
-            rotateY(${x * 15}deg) 
-            rotateX(${currentXRotation - y * 10}deg)
-        `;
-    }
-
-    // 7. Complete animation and enable content scroll
-    function completeAnimation() {
-        animationPhase = 2;
-        
-        // Show navigation
-        nav.style.opacity = '1';
-        nav.style.transform = 'translateY(0)';
-        
-        // Enable content scrolling
-        allowContentScroll = true;
-        document.body.style.overflow = 'auto';
-        window.removeEventListener('wheel', handleScroll);
-        
-        // Make cube follow cursor
-        window.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth - 0.5;
-            const y = e.clientY / window.innerHeight - 0.5;
-            
-            cubeContainer.style.transform = `
-                translateZ(-200px) 
-                rotateY(${x * 30}deg) 
-                rotateX(${-y * 20}deg)
-                scale(0.8)
-            `;
-        });
-
-        // Normal page scrolling
-        window.addEventListener('wheel', (e) => {
-            if (!allowContentScroll) return;
-            window.scrollBy({
-                top: e.deltaY,
-                behavior: 'smooth'
-            });
-        }, { passive: true });
-
-        // Make cube follow touch movement
-        window.addEventListener('touchmove', handleTouchMove, { passive: true });
-    
-        // Normal page scrolling for touch devices
-        window.addEventListener('touchmove', (e) => {
-            if (!allowContentScroll) return;
-            // Allow default touch scrolling behavior
-        }, { passive: true });
-    }
-
-    function handleTouchMove(e) {
-        if (animationPhase !== 2) return;
-        
-        const x = e.touches[0].clientX / window.innerWidth - 0.5;
-        const y = e.touches[0].clientY / window.innerHeight - 0.5;
-        
-        cubeContainer.style.transform = `
-            translateZ(-200px) 
-            rotateY(${x * 30}deg) 
-            rotateX(${-y * 20}deg)
-            scale(0.8)
-        `;
-    }
-
-    // Start the animation sequence
-    setTimeout(startWelcomeAnimation, 500);
-
-    // 8. Restart animations when scrolling to top
-    let lastScrolPosition = window.scrollY;
-    const scrolThreshold = 100; // How far down before considering it a "scroll down"
-
-    function resetToCubeRotation() {
-        // Reset only relevant animation states
-        animationPhase = 1;
-        targetXRotation = 0;
-        currentXRotation = 0;
-        isAnimating = false;
-        verticalRotationComplete = false;
-        allowContentScroll = false;
-        isTouchRotating = false;
-
-        // Reset cube to initial rotation state
-        cube.style.transform = 'rotateY(0deg) rotateX(0deg)';
-
-        // Remove existing event listeners to prevent duplicates
-        window.removeEventListener('wheel', handleScroll);
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('touchmove', handleTouchMove);
-        
-        // Reset body overflow to prevent scrolling during animation
-        document.body.style.overflow = 'hidden';
-        
-        // Start from cube rotation phase
-        initialCubeRotation();
-    }
-
-    window.addEventListener("scroll", () => {
-        const currentScrolPosition = window.scrollY;
-
-        // Only trigger if we've scrolled up near the top after being further down
-        if (currentScrolPosition < 100 && lastScrolPosition > scrolThreshold) {
-            resetToCubeRotation();
-        }
-        lastScrolPosition = currentScrolPosition;
-    });
-
-    
-    // Touch support for mobile
-    let touchStartY = 0;
-    let touchStartX = 0;
-    let isTouchRotating = false;
-    
-    document.addEventListener('touchstart', (e) => {
-        if (animationPhase !== 1) return;
-
-        e.preventDefault();
-        touchStartY = e.touches[0].clientY;
-        touchStartX = e.touches[0].clientX;
-        isTouchRotating = true;
-    }, { passive: true });
-    
-    document.addEventListener('touchmove', (e) => {
-        if (!isTouchRotating || animationPhase !== 1) return;
-        
-        e.preventDefault();
-        const touchY = e.touches[0].clientY;
-        const deltaY = touchY - touchStartY;
-        
-        // Rotate cube based on touch movement
-        targetXRotation += deltaY * 0.5;
-        targetXRotation = Math.max(-maxVerticalRotation, Math.min(maxVerticalRotation, targetXRotation));
-        touchStartY = touchY;
-        
-        animateCubeRotation();
-        
-        // Check if vertical rotation is complete
-        if (Math.abs(targetXRotation) >= maxVerticalRotation) {
-            verticalRotationComplete = true;
-            completeAnimation();
-            isTouchRotating = false;
-        }
-    }, { passive: false });
-    
-    document.addEventListener('touchend', () => {
-        isTouchRotating = false;
-        
-        // If rotation was almost complete but not quite, snap to complete position
-        if (animationPhase === 1 && Math.abs(targetXRotation) > maxVerticalRotation * 0.8) {
-            targetXRotation = targetXRotation > 0 ? maxVerticalRotation : -maxVerticalRotation;
-            verticalRotationComplete = true;
-            completeAnimation();
-        }
-    });
-
-        
-    if (!allowContentScroll) {
-        e.preventDefault();
-        const touchX = e.touches[0].clientX;
-        const touchY = e.touches[0].clientY;
-            
-        const deltaX = touchX - touchStartX;
-        const deltaY = touchY - touchStartY;
-            
-        // Rotate cube based on touch movement
-        targetXRotation += deltaY * 0.5;
-        cube.style.transform = `rotateY(${deltaX * 0.5}deg) rotateX(${targetXRotation}deg)`;
-            
-        touchStartX = touchX;
-        touchStartY = touchY;
-    }
-
-});
-
-
-
-// Continuous Marquee Sliders
-const swiper6 = new Swiper('.swiper6', {
-    freeMode: true,
-    loop: true,
-    freeModeMomentum: false,
-    speed: 6000,
-    direction: 'horizontal',
-    autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
     },
-    slidesPerView: 'auto',
-    spaceBetween: 30,
-    allowTouchMove: false,
-    watchSlidesProgress: true,
-    resistanceRatio: 0 // Disable bounce effect
-});
+    { threshold: 0.13 },
+  );
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const mainCol = document.querySelector('#wat');
-    const vertSwiperEl = document.querySelector('#vertical-swiper');
-    const vertWrapper = vertSwiperEl.querySelector('.swiper-wrapper');
-    
-    // Function to fill vertical slider to match main content height
-    function fillVerticalSlider() {
-        var mainHeight = mainCol.offsetHeight;
-        // Duplicate original slides until vertical content height >= main content height
-        var originalSlides = Array.from(vertWrapper.children);
-        var cloneIndex = 0;
-        while (vertSwiperEl.scrollHeight < mainHeight && originalSlides.length > 0) {
-        var cloneSlide = originalSlides[cloneIndex % originalSlides.length].cloneNode(true);
-        vertWrapper.appendChild(cloneSlide);
-        cloneIndex++;
-        if (cloneIndex > 50) break; // safety break
-        }
-        // Set vertical slider height to match main content and hide overflow beyond it
-        vertSwiperEl.style.height = mainHeight + 'px';
-        vertSwiperEl.style.overflow = 'hidden';
-    }
-    
-    // Fill vertical slider then initialize Swipers
-    fillVerticalSlider();
-    const verticalSwiper = new Swiper('#vertical-swiper', {
-        direction: 'vertical',
-        spaceBetween: 0,
-        freeMode: true,
-        loop: true,
-        speed: 15000,
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        slidesPerView: 'auto',
-        allowTouchMove: false
-    });
-
-    const swiper1 = new Swiper('.swiper1', {
-        freeMode: true,
-        loop: true,
-        freeModeMomentum: false,
-        speed: 6000,
-        direction: 'horizontal',
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 50,
-        allowTouchMove: false,
-        watchSlidesProgress: true,
-        resistanceRatio: 0 // Disable bounce effect
-    });
-
-    const swiper2 = new Swiper('.swiper2', {
-        freeMode: true,
-        loop: true,
-        freeModeMomentum: false,
-        speed: 6000,
-        direction: 'horizontal',
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-            reverseDirection: true 
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 50,
-        allowTouchMove: false,
-        watchSlidesProgress: true,
-        resistanceRatio: 0 // Disable bounce effect
-    });
-
-    const swiper3 = new Swiper('.swiper3', {
-        freeMode: true,
-        loop: true,
-        freeModeMomentum: false,
-        speed: 6000,
-        direction: 'horizontal',
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 50,
-        allowTouchMove: false,
-        watchSlidesProgress: true,
-        resistanceRatio: 0 // Disable bounce effect
-    });
-
-    const swiper4 = new Swiper('.swiper4', {
-        freeMode: true,
-        loop: true,
-        freeModeMomentum: false,
-        speed: 6000,
-        direction: 'horizontal',
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-            reverseDirection: true 
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 50,
-        allowTouchMove: false,
-        watchSlidesProgress: true,
-        resistanceRatio: 0 // Disable bounce effect
-    });
-
-    const swiper5 = new Swiper('.swiper5', {
-        freeMode: true,
-        loop: true,
-        freeModeMomentum: false,
-        speed: 6000,
-        direction: 'horizontal',
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 50,
-        allowTouchMove: false,
-        watchSlidesProgress: true,
-        resistanceRatio: 0 // Disable bounce effect
-    });
-
-    const swiper6 = new Swiper('.swiper6', {
-        freeMode: true,
-        loop: true,
-        freeModeMomentum: false,
-        speed: 6000,
-        direction: 'horizontal',
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 50,
-        allowTouchMove: false,
-        watchSlidesProgress: true,
-        resistanceRatio: 0 // Disable bounce effect
-    });
-  
-    // Recalculate vertical slider fill on window resize (for responsiveness)
-    window.addEventListener('resize', fillVerticalSlider);
-});
-
-
-
-
-// Cuboid Idea Box Animation
-const cuboidContainer = document.querySelector('.cuboid-container');
-const cuboid = document.querySelector('.cuboid');
-const tooltip = document.querySelector('.tooltip');
-const modal = document.querySelector('.modal');
-const modalOverlay = document.querySelector('.modal-overlay');
-const ideaForm = document.getElementById('idea-form');
-            
-// Animation variables
-let rotationAngle = 0;
-let animationId = null;
-const rotationSpeed = 1; // degrees per frame
-
-// Function to continuously rotate the cuboid
-function rotateCuboid() {
-    rotationAngle += rotationSpeed;
-    cuboid.style.transform = `rotateY(${rotationAngle}deg)`;
-    animationId = requestAnimationFrame(rotateCuboid);
+  items.forEach((item) => observer.observe(item));
 }
 
-// Start the rotation when the page loads
-rotateCuboid();
-            
-// Tooltip hover events
-cuboidContainer.addEventListener('mouseenter', () => {
-    tooltip.style.display = 'block';
-    // Pause rotation on hover for better UX
-    cancelAnimationFrame(animationId);
-});
-            
-cuboidContainer.addEventListener('mouseleave', () => {
-    tooltip.style.display = 'none';
-    // Resume rotation when mouse leaves
-    rotateCuboid();
-});
-            
-// Click event for modal
-cuboidContainer.addEventListener('click', (e) => {
-    e.stopPropagation();
-    modal.style.display = 'block';
-    modalOverlay.style.display = 'block';
-    // Pause rotation when modal is open
-    cancelAnimationFrame(animationId);
-});
-            
-// Close modal when clicking outside
-modalOverlay.addEventListener('click', () => {
-    modal.style.display = 'none';
-    modalOverlay.style.display = 'none';
-    // Resume rotation when modal closes
-    rotateCuboid();
-});
-            
-// Form submission handler
-document.getElementById('idea-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const form = e.target;
-    const submitBtn = form.querySelector('.submit-btn');
-    const originalBtnText = submitBtn.textContent;
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    
-    // Collect form data
-    const formData = new URLSearchParams(new FormData(form));
-    
-    // Your Google Apps Script URL (from deployment)
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzEmk6ONOpkDEb-sIgWg6mF8jquNucuxtG17_y7TD5mIurby-jR9FJmnVjeNbagxKpS/exec';
-    
-    // Submit to Google Apps Script
-    fetch(scriptUrl, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-    })
-    .then(data => {
-        if (data.result === 'success') {
-            // Success message
-            alert(data.message);
-            form.reset();
-            
-            // Close modal if needed
-            const modal = document.querySelector('.modal');
-            if (modal) modal.style.display = 'none';
-            
-            // Reset reCAPTCHA
-            if (typeof grecaptcha !== 'undefined') {
-                grecaptcha.reset();
-            }
-        } else {
-            throw new Error(data.message || 'Submission failed');
-        }
-    })
-    .catch(error => {
-        alert('Error: ' + error.message);
-        console.error('Submission error:', error);
-    })
-    .finally(() => {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
+function initTrustSlider() {
+  const slider = document.querySelector("[data-trust-slider]");
+  if (!slider) return;
+
+  const track = slider.querySelector("[data-trust-track]");
+  const slides = Array.from(slider.querySelectorAll("[data-trust-slide]"));
+  const previous = document.querySelector("[data-trust-previous]");
+  const next = document.querySelector("[data-trust-next]");
+  const status = document.querySelector("[data-trust-status]");
+  if (!track || !slides.length || !previous || !next) return;
+
+  let index = 0;
+
+  const update = () => {
+    const slide = slides[index];
+    const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+    const offset = index * (slide.getBoundingClientRect().width + gap);
+    track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    slides.forEach((item, slideIndex) => {
+      const isActive = slideIndex === index;
+      item.setAttribute("aria-hidden", String(!isActive));
+      item.querySelectorAll("a, button").forEach((control) => {
+        control.tabIndex = isActive ? 0 : -1;
+      });
     });
-              
-    // Here you would typically send the form data to a server
-    alert('Thank you for your idea! We\'ll get back to you soon.');
-                
-    // Reset form and close modal
-    ideaForm.reset();
-    modal.style.display = 'none';
-    modalOverlay.style.display = 'none';
-    // Resume rotation after form submission
-    rotateCuboid();
-});
+    if (status) status.textContent = `Project ${index + 1} of ${slides.length}`;
+  };
 
+  previous.addEventListener("click", () => {
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  });
 
-// Clean up animation when page is hidden to save resources
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        cancelAnimationFrame(animationId);
-    } else {
-        rotateCuboid();
-    }
-});
+  next.addEventListener("click", () => {
+    index = (index + 1) % slides.length;
+    update();
+  });
 
-
-// Mobile navigation toggle
-function toggleMenu() {
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    navbarCollapse.classList.toggle('open');
-    
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navbarCollapse.classList.remove('open');
-        });
-    });
+  window.addEventListener("resize", update);
+  update();
 }
 
-// Handle form submission for mobile
-document.querySelectorAll('#idea-form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-        if (window.innerWidth < 768) {
-            e.preventDefault();
-            // Add mobile-specific form handling here
-            alert('Thank you for your idea! We\'ll get back to you soon.');
-            form.reset();
-        }
+function initMotionRails() {
+  document.querySelectorAll("[data-motion-rail]").forEach((rail) => {
+    const originalItems = Array.from(rail.children);
+    originalItems.forEach((item) => {
+      const clone = item.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      rail.appendChild(clone);
     });
-});
+  });
+}
 
-// Adjust cube size on resize
-window.addEventListener('resize', function() {
-    if (window.innerWidth < 768) {
-        const cubeContainer = document.querySelector('.cube-container');
-        const size = Math.min(window.innerWidth, window.innerHeight) * 0.7;
-        cubeContainer.style.width = `${size}px`;
-        cubeContainer.style.height = `${size}px`;
-    }
-});
+function initServiceNavigation() {
+  const links = Array.from(document.querySelectorAll("[data-service-link]"));
+  const sections = Array.from(document.querySelectorAll("[data-service-section]"));
+  if (!links.length || !sections.length || !("IntersectionObserver" in window)) return;
 
-
-
-// Who We Are Page
-// Hero Section Animation
-// Animation Configuration
-const animationConfigs = {
-    home: {
-        element: document.querySelector("#welcome-section .animated-text"),
-        cursor: document.querySelector("#welcome-section .cursor"),
-        texts: [
-            "Architects of Innovation",
-            "Designing Tomorrow, Worldwide",
-            "Turning ‘What If?’ into ‘What’s Next’",
-            "Crafting Experiences for Humans, Not Screens",
-            "Bridging Dreams to Downloads",
-            "Your Trusted Partner in Digital Evolution",
-            "Obsessed with Details, So Your Users Aren’t",
-            "Designing Tomorrow, Worldwide"
-        ],
-        // Track animation state
-        state: {
-            index: 0,
-            charIndex: 0,
-            isDeleting: false,
-            isCompleted: false, // Track if the animation is done
-            timeoutId: null
-        }
+  const linkById = new Map(links.map((link) => [link.getAttribute("href").slice(1), link]));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => link.classList.remove("is-active"));
+      const active = linkById.get(visible.target.id);
+      if (active) {
+        active.classList.add("is-active");
+        active.scrollIntoView({ inline: "center", block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+      }
     },
-    services: {
-        element: document.querySelector("#serv-section .animated-text"),
-        cursor: document.querySelector("#serv-section .cursor"),
-        texts: [
-            'I turn "what if?" into "what\'s next."',
-            'I design for humans, not screens.',
-            'I bridge the gap between dreams and downloads.',
-            'I obsess over details so your users don\'t have to.',
-            'I speak both gamer and geek.',
-            'I code with one hand and sketch with the other.'
-        ],
-        // Track animation state
-        state: {
-            index: 0,
-            charIndex: 0,
-            isDeleting: false,
-            isCompleted: false,
-            timeoutId: null
-        }
-    }
-};
+    { rootMargin: "-24% 0px -58% 0px", threshold: [0.08, 0.2, 0.4] },
+  );
 
-function createTypeEffect(config) {
-    // Clear any existing timeout to prevent multiple animations running
-    if (config.state.timeoutId) {
-        clearTimeout(config.state.timeoutId);
-    }
-
-    function type() {
-        const currentText = config.texts[config.state.index];
-
-        if (config.state.isDeleting) {
-            config.state.charIndex--;
-        } else {
-            config.state.charIndex++;
-        }
-
-        config.element.innerText = currentText.substring(0, config.state.charIndex);
-
-        if (!config.state.isDeleting && config.state.charIndex === currentText.length) {
-            config.state.timeoutId = setTimeout(() => {
-                config.state.isDeleting = true;
-                type();
-            }, 1000); // Pause before deleting
-            return;
-        } else if (config.state.isDeleting && config.state.charIndex === 0) {
-            config.state.isDeleting = false;
-            config.state.index++;
-
-            if (config.state.index === config.texts.length) {
-                config.state.isCompleted = true;
-                config.element.innerText = config.texts[config.texts.length - 1];
-                if (config.cursor) config.cursor.style.display = "none";
-                return;
-            }
-        }
-
-        config.state.timeoutId = setTimeout(type, config.state.isDeleting ? 50 : 100);
-    }
-
-    // Reset animation state
-    config.state.index = 0;
-    config.state.charIndex = 0;
-    config.state.isDeleting = false;
-    config.state.isCompleted = false;
-    if (config.cursor) config.cursor.style.display = "inline";
-    
-    // Start new animation
-    type();
+  sections.forEach((section) => observer.observe(section));
 }
 
-// Initialize animations for all configured sections
-function initAnimations() {
-    Object.values(animationConfigs).forEach(config => {
-        if (config.element) {
-            createTypeEffect(config);
-        }
-    });
+function initPackageSelection() {
+  const packageField = document.querySelector("#package");
+  if (!packageField) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const selectedPackage = params.get("package");
+  if (selectedPackage && Array.from(packageField.options).some((option) => option.value === selectedPackage)) {
+    packageField.value = selectedPackage;
+  }
+
+  if (params.get("intent") === "quote") {
+    const intentField = document.querySelector("#intent");
+    if (intentField) intentField.value = "fixed-price-quote";
+  }
 }
 
-// Start animations when page loads
-window.onload = initAnimations;
+function initContactForm() {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
 
-// Restart animations when scrolling to top
-let lastScrollPosition = window.scrollY;
-const scrollThreshold = 50; // How far down before considering it a "scroll down"
+  const status = form.querySelector("[data-form-status]");
+  const email = form.dataset.mailto || "NOruche@apure.ca";
 
-window.addEventListener("scroll", () => {
-    const currentScrollPosition = window.scrollY;
-    
-    // If we've scrolled back up near the top after scrolling down
-    if (currentScrollPosition < 50 && lastScrollPosition > scrollThreshold) {
-        initAnimations(); // Restart all animations
-    }
-    
-    lastScrollPosition = currentScrollPosition;
-});
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
 
-// Optional: Also restart when page becomes visible again
-document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === 'visible') {
-        initAnimations();
-    }
-});
+    const data = new FormData(form);
+    const subject = `Apure' project inquiry: ${data.get("package") || data.get("intent") || "New project"}`;
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Email: ${data.get("email")}`,
+      `Organization: ${data.get("organization") || "Not provided"}`,
+      `Project type: ${data.get("package") || "Not sure yet"}`,
+      `Budget: ${data.get("budget") || "Not provided"}`,
+      `Timeline: ${data.get("timeline") || "Not provided"}`,
+      "",
+      "Project details:",
+      data.get("message"),
+    ].join("\n");
 
-
-
-// Project button Animation
-
-// Function to handle tab switching
-
-function openTab(tabName) {
-    // Hide all tab content
-    const tabContents = document.querySelectorAll(".tabcontent");
-    tabContents.forEach((tab) => (tab.style.display = "none"));
-
-    // Remove the "active" class from all buttons
-    const tabButtons = document.querySelectorAll(".tab-btn");
-    tabButtons.forEach((button) => button.classList.remove("active"));
-  
-    // Show the selected tab content
-    document.getElementById(tabName).style.display = "block";
-
-    // Add the "active" class to the clicked button
-    const activeButton = document.querySelector(`[onclick="openTab('${tabName}')"]`);
-    activeButton.classList.add("active");
+    if (status) status.textContent = "Opening your email app with the project details ready.";
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
 }
-  
-// Show the first tab by default
-document.addEventListener("DOMContentLoaded", () => {
-    openTab("tab1");
-});
 
+function initYear() {
+  document.querySelectorAll("[data-current-year]").forEach((item) => {
+    item.textContent = new Date().getFullYear();
+  });
+}
+
+initNavigation();
+initCursorOrb();
+initReveals();
+initTrustSlider();
+initMotionRails();
+initServiceNavigation();
+initPackageSelection();
+initContactForm();
+initYear();

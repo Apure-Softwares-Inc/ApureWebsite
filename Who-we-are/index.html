@@ -1,617 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <title>Who We Are | About Apure', Our Story</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.documentElement.classList.add("js");</script>
+    <title>Who We Are | Meet the Founders of Apure'</title>
+    <meta
+      name="description"
+      content="Meet Apure' co-founders Nkechi and Kingsley Oruche, a founder-led UX research, product design and frontend development team."
+    >
+    <link rel="canonical" href="https://apure.ca/Who-we-are/">
+    <meta name="theme-color" content="#49178f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Who We Are | Apure'">
+    <meta property="og:description" content="A small founder-led team combining research, product design and software thinking.">
+    <meta property="og:url" content="https://apure.ca/Who-we-are/">
+    <meta property="og:image" content="https://apure.ca/assets/optimized/team/nkechi-oruche.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="../assets/Logo/LogoPurple4.png">
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="cursor-orb" data-cursor-orb aria-hidden="true">A</div>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="Assets/Logo/TitleLogo3.png">
-
-    <!-- Link to your custom CSS file -->
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- Replace your Bootstrap 4 CSS with Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Add Bootstrap 5 JS bundle (required for dropdowns, etc.) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Link to CDN link CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <!-- Link to UNPKG Continuous Marquee Sliders -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
-    <script>
-        // Redirect if the URL contains "index.html"
-        if (window.location.href.includes("index.html")) {
-          window.location.href = window.location.href.replace("index.html", "");
-        }
-    </script>
-
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-</head>
-<body style="overflow: auto;">
-    
-    <!-- Header/Navigation Section -->
-    <header>
-        <nav class="navbar navbar-expand-lg" id="navbar" style="opacity: 1; transform: translateY(0);">
-            <div class="container-fluid">
-                <!-- Brand Name on the Left -->
-                <a class="navbar-brand" aria-current="page" href="../index.html">
-                    <img id="Logo1" 
-                    class="img-fluid" 
-                    alt="Logo image"
-                    src="../Assets/Logo/LogoPurple4.png" 
-                    loading="lazy"
-                    width="44" 
-                    height="38">
-                
-                    <img id="Logo1" 
-                    class="img-fluid" 
-                    alt="Logo text"
-                    src="../Assets/Logo/TextOnly.png" 
-                    loading="lazy"
-                    width="100" 
-                    height="60">
-                </a>
-                
-                 <!-- Hamburger Menu for Mobile -->
-                <button class="navbar-toggler" type="button" onclick="toggleMenu()" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span> <!-- Unicode for Hamburger Icon -->
-                </button>
-
-                <!-- Navigation Links -->
-                <div class="navbar-collapse" id="navbarNav">
-                    <ul class="nav nav-underline">
-                        <li class="nav-item" id="navigation">
-                            <a class="nav-link" href="../What-we-do/">What we do</a>
-                        </li>
-                        <li class="nav-item" id="navigation">
-                            <a class="nav-link active" href="../Who-we-are/">Who we are</a>
-                        </li>
-                        <li class="nav-item" id="navigation">
-                            <a class="nav-link" href="#">Careers</a>
-                        </li>
-                        <li class="nav-item" id="navigation">
-                            <a class="nav-link" href="../Get-in-Touch/">Get in touch</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="../" aria-label="Apure' home">
+          <img class="brand-mark" src="../assets/Logo/LogoPurple4.png" width="36" height="36" alt="">
+          <span>Apure&rsquo;</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-menu"
+          aria-label="Open navigation"
+          data-nav-toggle
+        >
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" id="site-menu" aria-label="Main navigation" data-nav-menu>
+          <ul class="nav-links">
+            <li><a class="nav-link" href="../What-we-do/">What we do</a></li>
+            <li><a class="nav-link" href="./" aria-current="page">Who we are</a></li>
+          </ul>
+          <a class="button button-primary button-small" href="../Get-in-Touch/?intent=discovery">Book a call</a>
         </nav>
+      </div>
     </header>
-    
 
-    <!-- Page content -->
-    <main class="content" id="abt">
-         <!-- Hero-Section -->
-        <div class="container-fluid" id="welcome-section">
-            <div id="intro">
-                <h1 id="intro-name">
-                    <strong>Apure'</strong>
-                    <br>
-                    <span class="animated-text text-style-italic"></span><span class="cursor">|</span> <!-- Cursor effect -->
-                    <br>
-                </h1>
-                <span>&zwj;</span>
-                <h3 id="h3i">Where visionary strategy meets human-centered design, transforming bold ideas into products that resonate, scale, and endure.</h3>
-            </div>
+    <main id="main-content">
+      <section class="page-hero">
+        <div class="container page-hero-grid">
+          <div class="reveal">
+            <p class="eyebrow">Who we are</p>
+            <h1>Two founders. Different lenses. One clear goal.</h1>
+          </div>
+          <div class="page-hero-copy reveal">
+            <p>
+              We combine scientific inquiry, user research, psychology, product design and software
+              thinking to make complex ideas easier for real people to understand and use.
+            </p>
+            <a class="button button-primary" href="../Get-in-Touch/?intent=discovery">
+              <span>Meet us for 30 minutes</span>
+              <span class="avatar-stack" aria-hidden="true">
+                <img src="../assets/optimized/team/nkechi-oruche.webp" width="44" height="44" alt="">
+                <img src="../assets/optimized/team/kingsley-oruche.webp" width="44" height="44" alt="">
+              </span>
+            </a>
+          </div>
         </div>
+      </section>
 
-        <section id="challenges1">
-            <div id="challenge1">
-                <div class="container-fluid" id="tabs">
-                    <div class="row d-flex justify-content-center" id="btn">
-                        <div class="col-6 tab-buttons d-flex justify-content-center">
-                            <button class="tab-btn btn-lg active" type="button" onclick="openTab('tab1')">
-                                <h3><strong>Nkechi Oruche</strong></h3>
-                            </button>
-                        </div>
-                        <div class="col-6 tab-buttons d-flex justify-content-center">
-                            <button class="tab-btn btn-lg" type="button" onclick="openTab('tab2')">
-                                <h3><strong>Kingsley Oruche</strong></h3>
-                            </button>
-                        </div>
-                    </div>
-
-
-                    <!-- Nkechi Oruche tab -->
-                    <div id="tab1" class="tabcontent">
-                        <section id="Abta">
-                            <div class="card mb-5" id="abtcard" style="border: none;">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <p id="Abt" class="card-text"><strong>Hello, I'm Dr. Nkechi Oruche</strong>, a senior product designer, Senior UX Researcher, software engineer, tech startup co-founder and a proud Ph.D. nerd!</p>
-                                            <br>
-                                            <p id="Abt" class="card-text">My career journey started in Earth Science, where I researched, analyzed, and taught insights from rocks and fossils to decode the story of our planet.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <img class="img-fluid"
-                                            id="Abt-image"
-                                            alt="Nkechi Oruche Photo"
-                                            src="../Assets/Who-we-are/1 - Me in lab coat.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-
-                            <div class="card mb-5" id="abtcard" style="border: none;">
-                                <div class="row" id="rows">
-                                    <div class="col-md-3">
-                                        <img class="img-fluid"
-                                            id="Abt-image"
-                                            alt="Nkechi Oruche Photo"
-                                            src="../Assets/Who-we-are/2 - Design.png" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <p id="Abt" class="card-text"><strong>Designing and programming with a Ph.D.:</strong> I blend research, analysis, communication, and quick decision-making to bridge the gap between businesses and users, transforming design and development teams into a well-oiled engine that powers seamless digital experiences.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-
-                            <div class="card mb-5" id="abtcard" style="border: none;">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <p id="Abt" class="card-text"><strong>My Therapy:</strong> Building Legos and watching anime are my go-to escapes, sparking creativity and bringing me pure joy and tranquility.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <img class="img-fluid"
-                                            id="Abt-image"
-                                            alt="Nkechi Oruche Photo"
-                                            src="../Assets/Who-we-are/3 - Lego.png" 
-                                            loading="lazy">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-
-                            <div class="card mb-5" id="abtcard" style="border: none;">
-                                <div class="row" id="rows">
-                                    <div class="col-md-3">
-                                        <img class="img-fluid"
-                                            id="Abt-image"
-                                            alt="Nkechi Oruche Photo"
-                                            src="../Assets/Who-we-are/1.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <p id="Abt" class="card-text"><strong>Fun Facts:</strong> An introvert thriving in an extroverted industry. Learned to ride a bike in 2021. Kickstart my day at 4 AM with 5 ml of water (for balance) and a Harry Potter mug full of coffee (for survival).</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-
-                            <div class="container mb-5" id="Abts" style="border: none;">
-                                <div class="row">
-                                    <div class="col-md">
-                                        <p id="Abt" class="card-text"><strong>Off the Clock:</strong> When I’m not building and creating, you can find me mentoring, volunteering, gaming, running, building Legos, reading, baking, jamming to music, doodling stick figures, cycling, binge-watching movies and series, and sharing my journey in design and programming on LinkedIn and social media.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="container-fluid" id="Abtq" style="border: none;">
-                                <div class="row" id="Abtr">
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Stick figures"
-                                            src="../Assets/Who-we-are/1 - Stick figures.png" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Mentoring"
-                                            src="../Assets/Who-we-are/3 - Mentoring.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Harry Potter Mug"
-                                            src="../Assets/Who-we-are/5 - Harry Potter.png" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt=" huge Cow Seating"
-                                            src="../Assets/Who-we-are/Cow.png" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Demon Slayer"
-                                            src="../Assets/Who-we-are/6 - Demon Slayer.png" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Baked Foods"
-                                            src="../Assets/Who-we-are/2 - Baking.png" 
-                                            loading="lazy">
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!--Kingsley Oruche Tab -->
-                    <div id="tab2" class="tabcontent">
-                        <section id="Abta">
-                            <div class="card mb-5" id="abtcard" style="border: none;">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <p id="Abt" class="card-text"><strong>Hey, I'm Kingsley Oruche</strong>, a senior product designer and user research specialist powered by psychology and criminology. I uncover hidden narratives behind user actions, turn tangled experiences into intuitive, seamless interfaces that spark genuine delight. Think complex puzzles, solved beautifully.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <img class="img-fluid"
-                                            id="Abt-image"
-                                            alt="Nkechi Oruche Photo"
-                                            src="../Assets/Who-we-are/K1.png" 
-                                            loading="lazy">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-
-                            <div class="card mb-5" id="abtcard" style="border: none;">
-                                <div class="row" id="rows">
-                                    <div class="col-md-3">
-                                        <img class="img-fluid"
-                                            id="Abt-image"
-                                            alt="Nkechi Oruche Photo"
-                                            src="../Assets/Who-we-are/K2.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="card-body">
-                                            <p id="Abt" class="card-text"><strong>My Therapy:</strong> When I need to recharge, you’ll find me buried in a gritty crime novel, pedaling through winding trails on my bike, or unraveling mysteries over a simmering pot of jollof rice. Binge-watching crime docuseries fuels my inner detective, while travelling, from bustling cities to mountain escapes, ignites my curiosity. Every ride, journey, and suspenseful plot twist sharpens my design intuition, turning real-world inspiration into elegant solutions.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-
-                            <div class="container mb-5" id="Abts" style="border: none;">
-                                <div class="row">
-                                    <div class="col-md">
-                                        <p id="Abt" class="card-text"><strong>Off the Clock:</strong> Beyond pixels and user flows, I’m either planning my next adventure across continents, experimenting with bold new recipes (ask me about my pepper soup!), or diving deep into true-crime docuseries. I thrive on turning raw inspiration from my travels and crime obsessions into elegant design solutions, because even chaos deserves a touch of artistry.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="container-fluid" id="Abtq" style="border: none;">
-                                <div class="row" id="Abtr">
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Stick figures"
-                                            src="../Assets/Who-we-are/K6.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Mentoring"
-                                            src="../Assets/Who-we-are/K3.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Harry Potter Mug"
-                                            src="../Assets/Who-we-are/K4.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt=" huge Cow Seating"
-                                            src="../Assets/Who-we-are/K5.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Demon Slayer"
-                                            src="../Assets/Who-we-are/K7.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                    <div class="col-md-2" id="Abtc">
-                                        <img class="img-fluid"
-                                            id="Abt-image1"
-                                            alt="Baked Foods"
-                                            src="../Assets/Who-we-are/K8.jpg" 
-                                            loading="lazy">
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
+      <section class="section-sm" aria-labelledby="founders-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Meet the founders</p>
+              <h2 class="section-title" id="founders-title">The people doing the work are the people in the room.</h2>
             </div>
-        </section>
-        
+            <p class="section-copy">
+              We keep the process close and personal. You work directly with us from the first conversation through research, design, and handoff, so your project stays clear, focused, and easy to move forward.
+            </p>
+          </div>
+          <div class="founder-grid">
+            <article class="founder-card reveal">
+              <div class="founder-photo">
+                <img
+                  src="../assets/optimized/team/nkechi-oruche.webp"
+                  width="900"
+                  height="720"
+                  alt="Nkechi Oruche, co-founder of Apure'"
+                >
+              </div>
+              <div class="founder-copy">
+                <h2>Nkechi Oruche, Ph.D.</h2>
+                <p class="founder-role">Co-founder - UX research, product design and software engineering</p>
+                <p>
+                  Nkechi began in Earth Science, researching, analyzing and teaching the stories held
+                  in rocks and fossils. Today, she applies the same curiosity and evidence-first thinking
+                  to users, products and software.
+                </p>
+                <p>
+                  She bridges research, design and development so useful insights do not get lost between
+                  disciplines, and so teams can move from uncertainty to a clear build direction.
+                </p>
+              </div>
+            </article>
+            <article class="founder-card reveal">
+              <div class="founder-photo">
+                <img
+                  src="../assets/optimized/team/kingsley-oruche.webp"
+                  width="900"
+                  height="720"
+                  alt="Kingsley Oruche, co-founder of Apure'"
+                >
+              </div>
+              <div class="founder-copy">
+                <h2>Kingsley Oruche</h2>
+                <p class="founder-role">Co-founder - Product design and user research</p>
+                <p>
+                  Kingsley is a senior product designer and user research specialist with a background
+                  in psychology and criminology. He looks for the hidden story behind user behavior,
+                  then turns tangled experiences into clear, intuitive interfaces.
+                </p>
+                <p>
+                  His strength is making complexity feel calm: identifying what matters, removing what
+                  does not and shaping a product people can understand without a manual.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-        
-
-
-        <!-- Idea Cuboid Box content -->
-        <section class="cuboid-bg">
-            <div class="cuboid-container">
-                <div class="tooltip">
-                    <div id="tol"><strong>Hey there!</strong></div> 
-                    <div>Click me and tell me your brilliant idea(s)</div>
-                </div>
-                <div class="cuboid">
-                    <div class="cuboid-face cuboid-face-front">Idea Box</div>
-                    <div class="cuboid-face cuboid-face-right">Idea Box</div>
-                    <div class="cuboid-face cuboid-face-back">Idea Box</div>
-                    <div class="cuboid-face cuboid-face-left">Idea Box</div>
-                    <div class="cuboid-face cuboid-face-top" style="background-color: #ac2f3b;">Idea Box</div>
-                    <div class="cuboid-face cuboid-face-bottom" style="background-color: #df7b46;">Idea Box</div>
-                </div>
+      <section class="section" aria-labelledby="approach-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">How we think</p>
+              <h2 class="section-title" id="approach-title">Human insight first. Technology in service of the outcome.</h2>
             </div>
-            
-            <div class="modal-overlay"></div>
-            
-            <div class="modal">
-                <h4><strong>Share Your Vision with Apure'</strong></h4>
-                <p>Have an innovative idea? Let's bring it to life together!</p>
-                <form id="idea-form">
-                    <div class="form-row"> 
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="idea">Describe Your Brilliant Idea</label>
-                        <textarea id="idea" name="idea" placeholder="What would you like to build (the crazier, the better)? Be as detailed as possible..." required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Project Type</label>
-                        <select id="category" name="category">
-                            <option value="web">Web Application</option>
-                            <option value="mobile">Mobile App</option>
-                            <option value="ai">AI Solutions</option>
-                            <option value="game">Game Development</option>
-                            <option value="saas">SaaS Platform</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" name="contact" name="contact" checked>
-                        <label for="contact" id="chec">I'd like to discuss this with your team</label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Your Idea →</button>
-                </form>
+            <p class="section-copy">
+              The strongest digital product is not always the one with the most features. It is the one
+              that solves the right problem clearly, accessibly and at the right level of investment.
+            </p>
+          </div>
+          <div class="proof-points">
+            <article class="proof-point reveal">
+              <span>01 / Listen</span>
+              <h3>Start with people</h3>
+              <p>We ask what users need, what the organization needs and where those needs collide.</p>
+            </article>
+            <article class="proof-point reveal">
+              <span>02 / Simplify</span>
+              <h3>Reduce the noise</h3>
+              <p>We turn complex content, flows and requirements into an understandable product direction.</p>
+            </article>
+            <article class="proof-point reveal">
+              <span>03 / Make</span>
+              <h3>Build enough to learn</h3>
+              <p>We prototype and test before recommending a bigger investment in development.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section trust-section" aria-labelledby="story-title">
+        <div class="container story-grid">
+          <div>
+            <p class="section-label">Our story</p>
+            <h2 class="section-title" id="story-title">Curiosity is the common thread.</h2>
+            <p class="section-copy">
+              Science taught us to investigate. Psychology taught us to notice behavior. Design taught
+              us to make the complex usable. Software taught us to turn decisions into working systems.
+            </p>
+            <p class="section-copy">
+              Apure&rsquo; brings those disciplines together for teams that need senior thinking without
+              the structure or cost of a large agency.
+            </p>
+          </div>
+          <div class="story-gallery reveal">
+            <img src="../assets/optimized/team/nkechi-lab.webp" width="1200" height="900" alt="Nkechi Oruche working in a science laboratory">
+            <img src="../assets/optimized/team/nkechi-design.webp" width="1000" height="800" alt="Nkechi Oruche working on digital product design">
+            <img src="../assets/optimized/team/kingsley-portrait.webp" width="900" height="1024" alt="Kingsley Oruche outdoors">
+          </div>
+        </div>
+      </section>
+
+      <section class="section-sm" aria-labelledby="cta-title">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <div>
+              <h2 id="cta-title">Let's talk</h2>
+              <p>You do not need a perfect brief. Tell us what feels unclear, what you have tried and what needs to happen next.</p>
+              <div class="cta-actions">
+                <a class="button button-dark" href="../Get-in-Touch/?intent=discovery">Book a discovery call</a>
+                <a class="button button-secondary" href="../#packages">See packages</a>
+              </div>
             </div>
-        </section>
-    
-
-        
-
-        <!-- Footer -->
-        <footer id="watfooter">
-            <!-- Let's Connect Section -->
-            <section id="connect">
-                <div class="container-large">
-                    <div class="row conn">
-                        <div class="col-6" id="connect1">
-                            <div class="row">
-                                <div class="col">
-                                    <img id="Logo1"  
-                                    alt="Logo image"
-                                    src="../Assets/Logo/logo2.png" 
-                                    loading="lazy">
-                                </div>
-                                <h3 id="h3a">
-                                    Apure' Softwares Inc. 
-                                </h3>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h4 id="thank1">
-                                        Ready to build something users will love? Let’s chat! 
-                                    </h4>
-                                    <p id="thank2">(We promise no geology puns… unless you want them)</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div id="forms">
-                                <h4><strong>Share Your Vision with Apure'</strong></h4>
-                                <p>Have an innovative idea? Let's bring it to life together!</p>
-                                <form id="idea-form">
-                                    <div class="form-row"> 
-                                        <div class="form-group">
-                                            <label for="name">Your Name</label>
-                                            <input type="text" id="name" name="name" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Email Address</label>
-                                            <input type="email" id="email" name="email" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="idea">Describe Your Brilliant Idea</label>
-                                        <textarea id="idea" name="idea" placeholder="What would you like to build (the crazier, the better)? Be as detailed as possible..." required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="category">Project Type</label>
-                                        <select id="category" name="category">
-                                            <option value="web">Web Application</option>
-                                            <option value="mobile">Mobile App</option>
-                                            <option value="ai">AI Solutions</option>
-                                            <option value="game">Game Development</option>
-                                            <option value="saas">SaaS Platform</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group checkbox-group">
-                                        <input type="checkbox" name="contact" name="contact" checked>
-                                        <label for="contact" id="chec">I'd like to discuss this with your team</label>
-                                    </div>
-                                    
-                                    <button type="submit" class="submit-btn">Send Your Idea →</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="social-links">
-                <div class="container-large">
-                    <div class="row">
-                        <div class="col-4" id="socialsA">
-                            <p id="socialsH"><strong>Socials</strong></p>
-                            <div id="socials">
-                                <p>
-                                    <a href="mailto:NOruche@apure.ca" id="social" style="color: #f0f0f0">
-                                        <i class="fas fa-envelope fa-2x" style="color: #D44638; padding-right: 10px;"></i>
-                                        NOruche@apure.ca
-                                    </a>
-                                </p>
-                            </div>
-
-                            <div id="socials">
-                                <a href="https://www.linkedin.com/in/apure-softwares-inc-aa3239363/" id="social" style="color: #f0f0f0">
-                                    <i class="fab fa-linkedin fa-2x" style="color: #0A66C2; padding-right: 10px;"></i>
-                                    LinkedIn
-                                </a>
-                            </div>
-                            
-                            <div id="socials">
-                                <a href="#" id="social" style="color: #f0f0f0">
-                                    <i class="fab fa-x-twitter fa-2x" style="color: #fcfdfd; padding-right: 10px;"></i>
-                                    X
-                                </a>
-                            </div>
-                    
-                            <div id="socials">
-                                <a href="https://www.youtube.com/@Apuresoftwaresinc" id="social" style="color: #f0f0f0">
-                                    <i class="fab fa-youtube fa-2x" style="color: #fcfdfd; padding-right: 10px;"></i>
-                                    Youtube
-                                </a>
-                            </div>
-                        
-                            <div id="socials">
-                                <a href="https://www.tiktok.com/@apure.ca?_t=ZM-8w6GSR1Kl5r&_r=1" id="social" style="color: #f0f0f0">
-                                    <i class="fab fa-tiktok fa-2x" style="color: #FF0050; padding-right: 10px;"></i>
-                                    TikTok
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-4" id="socialsA">
-                            <p id="socialsH"><strong>Company</strong></p>
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    What WE Do
-                                </a>
-                            </div>
-
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Who We Are
-                                </a>
-                            </div>
-                            
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Careers
-                                </a>
-                            </div>
-                    
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Get In Touch
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-4" id="socialsA">
-                            <p id="socialsH"><strong>Legalities</strong></p>
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Privacy Policy
-                                </a>
-                            </div>
-
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Accessibility
-                                </a>
-                            </div>
-                            
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Legal
-                                </a>
-                            </div>
-                    
-                            <div id="socials">
-                                <a href="#" id="soc" style="color: #f0f0f0">
-                                    Cookie Policy
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-
-            <section>
-                <div class="container-large">
-                    <p id="rights">© 2026 Apure Softwares Inc. All Rights Reserved. Handcrafted with a hot cup of coffee, no sugar no milk.</p>
-                </div>
-            </section>
-        </footer>
+            <div class="cta-art" aria-label="Apure' co-founders Nkechi and Kingsley Oruche">
+              <span class="cta-shape cta-shape--one" aria-hidden="true"></span>
+              <span class="cta-shape cta-shape--two" aria-hidden="true"></span>
+              <div class="cta-photo cta-photo--one">
+                <img src="../assets/optimized/team/nkechi-oruche.webp" width="900" height="720" loading="lazy" alt="Nkechi Oruche, Apure' co-founder">
+              </div>
+              <div class="cta-photo cta-photo--two">
+                <img src="../assets/optimized/team/kingsley-oruche.webp" width="900" height="720" loading="lazy" alt="Kingsley Oruche, Apure' co-founder">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-    
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="../js/script.js"></script>
-</body>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a class="brand footer-brand" href="../">
+              <img class="brand-mark" src="../assets/Logo/logo2.png" width="40" height="40" alt="">
+              <span>Apure&rsquo;</span>
+            </a>
+            <p class="footer-intro">Research, design and frontend development for useful, accessible digital products.</p>
+          </div>
+          <nav class="footer-nav" aria-label="Footer company links">
+            <h2>Company</h2>
+            <a href="../What-we-do/">What we do</a>
+            <a href="../#packages">Packages</a>
+            <a href="./">Who we are</a>
+            <a href="../Get-in-Touch/">Get in touch</a>
+          </nav>
+          <nav class="footer-nav" aria-label="Footer social links">
+            <h2>Connect</h2>
+            <a href="mailto:NOruche@apure.ca">NOruche@apure.ca</a>
+            <a href="https://www.linkedin.com/in/apure-softwares-inc-aa3239363/">LinkedIn</a>
+            <a href="https://www.youtube.com/@Apuresoftwaresinc">YouTube</a>
+            <a href="https://www.tiktok.com/@apure.ca">TikTok</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span data-current-year>2026</span> Apure&rsquo; Softwares Inc.</span>
+          <span>Working with teams everywhere.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+  </body>
 </html>

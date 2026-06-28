@@ -1,0 +1,16 @@
+{
+  "name": "Apure' Softwares Inc.",
+  "short_name": "Apure'",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcfbff",
+  "theme_color": "#49178f",
+  "icons": [
+    {
+      "src": "/assets/Logo/LogoPurple4.png",
+      "sizes": "1280x1219",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
